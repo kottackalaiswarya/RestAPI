@@ -1,0 +1,91 @@
+openapi: 3.0.0
+info:
+  title: User API
+  description: User API for Testing GlooEdge
+  contact:
+    name: Kottackal
+    url: www.kottackal.org
+  version: 1.0.0
+servers: 
+  - url: http://devapi.com
+  - url: http://prodapi.com
+paths:
+  /user:
+    description: User Resource
+    get:
+      description: OPeration to fetch Users
+      parameters: 
+        - in: query
+          name: username
+          required: true
+          schema:
+            $ref: '#/components/schemas/users'
+      responses:
+        200:
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/users'
+    post:
+      description: Add a new Student
+      requestBody:
+        content:
+          application/json:
+            schema:
+             $ref: '#/components/schemas/user'
+      responses:
+        201:
+          description: Record Succeaafully Added
+  /user{id}:
+    description: Get User based on path parameters
+    get:
+      description: OPeration to fetch Users
+      parameters: 
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success Response with Path Param
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    UserId:
+                      type: integer
+                      example: 3
+                    UserName:
+                      type: string
+                      example: Aiswarya
+components:
+  schemas:
+    user:
+      type: object
+      properties:
+        UserId:
+          type: integer
+          example: 3
+        UserName:
+          type: string
+          example: Aiswarya
+    users:
+     type: object
+     items:
+      properties:
+        UserId:
+          type: integer
+          example: 3
+        UserName:
+          type: string
+          example: Aiswarya
+          
+          
+     
+                      
+                      
+  
