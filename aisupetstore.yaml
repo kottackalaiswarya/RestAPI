@@ -11,22 +11,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: petstore
-  name: petstore
+    app: aisu
+  name: aisu
   namespace: default
 spec:
   selector:
     matchLabels:
-      app: petstore
+      app: aisu
   replicas: 1
   template:
     metadata:
       labels:
-        app: petstore
+        app: aisu
     spec:
       containers:
-      - image: soloio/petstore-example:latest
-        name: petstore
+      - image: soloio/aisu-example:latest
+        name: aisu
         ports:
         - containerPort: 8080
           name: http
@@ -34,14 +34,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: petstore
+  name: aisu
   namespace: default
   labels:
-    service: petstore
+    service: aisu
 spec:
   ports:
   - name: http
     port: 8080
     protocol: TCP
   selector:
-    app: petstore
+    app: aisu
